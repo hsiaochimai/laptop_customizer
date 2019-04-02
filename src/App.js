@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
-import './App.css';
-import Header from './Header'
-import FeatureList from './FeatureList'
-import PriceSummary from './PriceSummary'
+import React, { Component } from "react";
+import "./App.css";
+import Header from "./Header";
+import FeatureList from "./FeatureList";
+import PriceSummary from "./PriceSummary";
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       selected: {
         Processor: {
-            name: '17th Generation Intel Core HB (7 Core with donut spare)',
-            cost: 700
-          },
+          name: "17th Generation Intel Core HB (7 Core with donut spare)",
+          cost: 700
+        },
         "Operating System": {
-            name: 'Ubuntu Linux 16.04',
-            cost: 200
-          },
-        "Video Card":{
-            name: 'Toyota Corolla 1.5v',
-            cost: 1150.98
-          },
+          name: "Ubuntu Linux 16.04",
+          cost: 200
+        },
+        "Video Card": {
+          name: "Toyota Corolla 1.5v",
+          cost: 1150.98
+        },
         Display: {
-            name: '15.6" UHD (3840 x 2160) 60Hz Bright Lights and Knobs',
-            cost: 1500
-          }
+          name: '15.6" UHD (3840 x 2160) 60Hz Bright Lights and Knobs',
+          cost: 1500
+        }
       }
-    }
+    };
   }
-//product list
+
   updateFeature(feature, newValue) {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
@@ -38,36 +38,19 @@ class App extends Component {
   }
 
   render() {
-    //put in Product list
-    const summary = Object.keys(this.state.selected)
-          .map(key => <div className="summary__option" key={key}>
-            <div className="summary__option__label">{key}  </div>
-            <div className="summary__option__value">{this.state.selected[key].name}</div>
-            <div className="summary__option__cost">
-              { new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                  .format(this.state.selected[key].cost) }
-            </div>
-        </div>)
-//put in Order list
-    const total = Object.keys(this.state.selected)
-          .reduce((acc, curr) => acc + this.state.selected[curr].cost, 0);    
-
-//put in product list
-   
-
     return (
       <div className="App">
-        <Header />  
+        <Header />
         <main>
-        <FeatureList features={this.props.features}
-        onClick={this.updateFeature} /> 
-          <PriceSummary 
-          summary={summary}
-          total={total}/>
+          <FeatureList
+            features={this.props.features}
+            updateFeature={(key, item) => this.updateFeature(key, item)}
+          />
+          <PriceSummary selected={this.state.selected} />
         </main>
       </div>
     );
   }
 }
 
-export default App;  
+export default App;
