@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header'
 import FeatureList from './FeatureList'
-import PriceSummary from'./PriceSummary'
+import PriceSummary from './PriceSummary'
 
 class App extends Component {
   constructor(props){
@@ -59,7 +59,8 @@ class App extends Component {
       <div className="App">
         <Header />  
         <main>
-        <FeatureList features={this.state.selected} /> 
+        <FeatureList features={this.props.features}
+        onClick={this.updateFeature} /> 
           <PriceSummary 
           summary={summary}
           total={total}/>
