@@ -10,7 +10,7 @@ class Feature extends Component{
           console.log(`this is options`,item.name)
           console.log(`this is features[key]name`,this.props.features[key].name)
           let selectedClass =
-            item.name === this.props.features[key].name
+            item.name === this.props.selected[key].name
               ? "feature__selected"
               : "";
           const featureClass = "feature__option " + selectedClass;

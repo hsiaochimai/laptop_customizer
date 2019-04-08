@@ -7,6 +7,7 @@ class FeatureList extends React.Component {
       <section className="main__form">
         <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
         <Feature features={this.props.features}
+        selected={this.props.selected}
         updateFeature={this.props.updateFeature}/>
       </section>
     );
